@@ -1,0 +1,26 @@
+# Node
+node_modules/
+npm-debug.log*
+pnpm-debug.log*
+.pnpm-store/
+dist/
+coverage/
+.env
+.env.*
+.DS_Store
+
+# CDK
+cdk.out/
+cdk.context.json
+
+# IDE
+.idea/
+.vscode/
+
+# Frontend
+build/
+.cache/
+
+# Logs
+logs/
+*.log

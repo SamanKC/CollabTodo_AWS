@@ -1,0 +1,28 @@
+{
+  "name": "@collab/infra",
+  "version": "0.1.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rimraf dist cdk.out",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier -w .",
+    "cdk:synth": "cdk synth",
+    "cdk:diff": "cdk diff",
+    "cdk:deploy": "cdk deploy --all",
+    "cdk:destroy": "cdk destroy --all"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "2.214.0",
+    "constructs": "10.4.2",
+    "dotenv": "16.4.5"
+  },
+  "devDependencies": {
+    "aws-cdk": "2.214.0",
+    "esbuild": "0.21.5",
+    "rimraf": "5.0.10",
+    "ts-node": "10.9.2",
+    "typescript": "5.6.2"
+  }
+}

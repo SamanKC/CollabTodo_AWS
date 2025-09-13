@@ -1,0 +1,13 @@
+{
+  "name": "@collab/scripts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "echo \"no build\"",
+    "clean": "rimraf dist"
+  },
+  "devDependencies": {
+    "rimraf": "5.0.10"
+  }
+}

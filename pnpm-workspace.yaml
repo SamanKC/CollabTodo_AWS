@@ -1,0 +1,5 @@
+packages:
+  - infra
+  - backend
+  - frontend
+  - scripts
