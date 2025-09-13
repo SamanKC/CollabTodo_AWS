@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* temporary styling so we can see something */
+:root { color-scheme: light dark; }

@@ -1,8 +1,18 @@
 {
-  "extends": "../tsconfig.base.json",
   "compilerOptions": {
+    "target": "ES2022",
+    "module": "CommonJS",
+    "lib": ["ES2022"],
+    "moduleResolution": "node",
+    "rootDir": ".",
     "outDir": "dist",
-    "rootDir": "."
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* important for CDK + DefinitelyTyped d.ts */
+    "skipLibCheck": true,
+    "exactOptionalPropertyTypes": false
   },
   "include": ["bin", "lib"]
 }
