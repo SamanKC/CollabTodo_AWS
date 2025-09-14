@@ -2,20 +2,15 @@
   "name": "collab-todo",
   "private": true,
   "version": "0.1.0",
-  "packageManager": "pnpm@9.9.0",
+  "workspaces": [
+    "infra",
+    "backend",
+    "frontend"
+  ],
   "scripts": {
-    "build": "pnpm -r run build",
-    "lint": "pnpm -r run lint",
-    "fmt": "pnpm -r run fmt",
-    "typecheck": "pnpm -r run typecheck"
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test"
   },
-  "devDependencies": {
-    "@types/node": "20.14.11",
-    "@typescript-eslint/eslint-plugin": "7.16.1",
-    "@typescript-eslint/parser": "7.16.1",
-    "eslint": "8.57.1",
-    "eslint-plugin-import": "2.29.1",
-    "prettier": "3.3.3",
-    "typescript": "5.6.2"
-  }
+  "packageManager": "pnpm@9.9.0"
 }

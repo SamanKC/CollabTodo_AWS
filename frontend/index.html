@@ -1,13 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
+    <title>Collaborative To-Do</title>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Simple global error handler so blank screen shows error message
+      window.addEventListener('error', (e) => {
+        const el = document.getElementById('root');
+        if (el && !el.textContent?.includes('[App Error]')) {
+          el.innerHTML =
+            '<pre style="padding:12px;border:1px solid #ddd;border-radius:8px;background:#fff3f3;color:#900;">[App Error] ' +
+            (e.error?.message || e.message) +
+            '</pre>';
+        }
+      });
+      window.addEventListener('unhandledrejection', (e) => {
+        const el = document.getElementById('root');
+        const msg =
+          (e.reason && (e.reason.message || e.reason.toString())) ||
+          'unhandledrejection';
+        if (el && !el.textContent?.includes('[App Error]')) {
+          el.innerHTML =
+            '<pre style="padding:12px;border:1px solid #ddd;border-radius:8px;background:#fff3f3;color:#900;">[App Error] ' +
+            msg +
+            '</pre>';
+        }
+      });
+    </script>
   </body>
 </html>

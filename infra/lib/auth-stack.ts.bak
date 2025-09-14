@@ -1,0 +1,59 @@
+import * as cdk from 'aws-cdk-lib';
+import { Construct } from 'constructs';
+import * as cognito from 'aws-cdk-lib/aws-cognito';
+
+export class AuthStack extends cdk.Stack {
+  public readonly userPool: cognito.UserPool;
+  public readonly userPoolClient: cognito.UserPoolClient;
+
+  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+    super(scope, id, props);
+
+    this.userPool = new cognito.UserPool(this, 'collabtodoUserPool', {
+      selfSignUpEnabled: true,
+      signInAliases: { email: true },
+      passwordPolicy: {
+        minLength: 8,
+        requireLowercase: true,
+        requireUppercase: true,
+        requireDigits: true,
+        requireSymbols: true,
+      },
+      accountRecovery: cognito.AccountRecovery.EMAIL_ONLY,
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
+    });
+
+    this.userPoolClient = new cognito.UserPoolClient(this, 'collabtodoUserPoolClient', {
+      userPool: this.userPool,
+      generateSecret: false,
+      preventUserExistenceErrors: true,
+      authFlows: { userPassword: true },
+      supportedIdentityProviders: [cognito.UserPoolClientIdentityProvider.COGNITO],
+      oAuth: {
+        flows: { authorizationCodeGrant: true },
+        scopes: [cognito.OAuthScope.OPENID, cognito.OAuthScope.EMAIL, cognito.OAuthScope.PROFILE],
+        callbackUrls: [
+          'http://localhost:5173/callback',
+          'https://<CF_DOMAIN>/callback'
+        ],
+        logoutUrls: [
+          'http://localhost:5173',
+          'https://<CF_DOMAIN>'
+        ],
+      },
+    });
+
+    new cognito.UserPoolDomain(this, 'collabtodoCognitoDomain', {
+      userPool: this.userPool,
+      cognitoDomain: {
+        domainPrefix: 'collabtodo-app' // replace with unique prefix
+      }
+    });
+
+    new cdk.CfnOutput(this, 'UserPoolId', { value: this.userPool.userPoolId });
+    new cdk.CfnOutput(this, 'UserPoolClientId', { value: this.userPoolClient.userPoolClientId });
+    new cdk.CfnOutput(this, 'HostedUiUrl', {
+      value: `https://<COGNITO_DOMAIN_PREFIX>.auth.ap-southeast-2.amazoncognito.com/login?client_id=${this.userPoolClient.userPoolClientId}&response_type=code&scope=openid+email+profile&redirect_uri=http://localhost:5173/callback`
+    });
+  }
+}

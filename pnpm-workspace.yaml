@@ -1,5 +1,4 @@
 packages:
-  - infra
-  - backend
-  - frontend
-  - scripts
+  - "infra"
+  - "backend"
+  - "frontend"

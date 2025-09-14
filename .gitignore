@@ -1,16 +1,7 @@
-# dependencies
-node_modules/
-pnpm-lock.yaml
-
-# builds
-dist/
-cdk.out/
-coverage/
-
-# envs
+node_modules
+dist
+cdk.out
 .env
 .env.*
-*.local
-
-# misc
 .DS_Store
+coverage

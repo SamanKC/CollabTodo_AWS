@@ -1,18 +1,24 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "CommonJS",
-    "lib": ["ES2022"],
-    "moduleResolution": "node",
-    "rootDir": ".",
-    "outDir": "dist",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-
-    /* important for CDK + DefinitelyTyped d.ts */
     "skipLibCheck": true,
-    "exactOptionalPropertyTypes": false
+    "types": [
+      "node"
+    ],
+    "outDir": "dist"
   },
-  "include": ["bin", "lib"]
+  "include": [
+    "bin",
+    "lib"
+  ],
+  "exclude": [
+    "node_modules",
+    "cdk.out",
+    "dist"
+  ]
 }

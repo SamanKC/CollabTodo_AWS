@@ -1,9 +1,8 @@
 import type { Config } from 'jest';
-
 const config: Config = {
+  preset: 'ts-jest',
   testEnvironment: 'node',
-  transform: { '^.+\\.tsx?$': ['ts-jest', {}] },
   roots: ['<rootDir>/src'],
+  collectCoverage: false
 };
-
 export default config;
