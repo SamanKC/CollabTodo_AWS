@@ -2,6 +2,7 @@ import { Routes, Route, Link, Navigate } from "react-router-dom";
 import LoginCallback from "./pages/LoginCallback";
 import Dashboard from "./pages/Dashboard";
 import { login, isAuthenticated, logout } from "./lib/auth";
+import ListDetails from "./pages/ListDetails"; 
 
 export default function App() {
   const loggedIn = isAuthenticated();
@@ -22,6 +23,7 @@ export default function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/callback" element={<LoginCallback />} />
             <Route path="*" element={<Navigate to="/" />} />
+            <Route path="/lists/:id" element={<ListDetails />} />
           </Routes>
         </div>
       </main>

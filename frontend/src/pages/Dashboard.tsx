@@ -1,5 +1,7 @@
 // src/pages/Dashboard.tsx
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+
 import {
   isAuthenticated,
   login,
@@ -375,14 +377,15 @@ export default function Dashboard() {
                 )}
                 {!l.description && <p className="mt-1.5 text-sm text-gray-400">No description</p>}
 
-                <div className="mt-3 flex items-center justify-end">
-                  <button
-                    className="text-sm text-blue-600 hover:text-blue-700 font-medium"
-                    onClick={() => alert("Coming soon: open list")}
-                  >
-                    Open →
-                  </button>
-                </div>
+             <div className="mt-3 flex items-center justify-end">
+  <Link
+    to={`/lists/${l.id}`}
+    state={{ list: l }} // pass the whole list object for instant render
+    className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+  >
+    Open →
+  </Link>
+</div>
               </div>
             ))}
           </div>
